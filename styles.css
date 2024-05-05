@@ -64,10 +64,35 @@ button:hover {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform .2s ease; /* Adjusted duration */
-
 }
-
 
 #gallery img:hover {
     transform: scale(1.1);
+}
+
+/* Mobile-specific Styles */
+@media (max-width: 768px) {
+    body {
+        padding: 10px; /* Reduced padding for smaller screens */
+    }
+
+    h1 {
+        font-size: 20px; /* Smaller font size for smaller screens */
+        margin-bottom: 10px; /* Reduced margin for compact layout */
+    }
+
+    #buttons {
+        margin-bottom: 10px;
+    }
+
+    button {
+        padding: 8px 16px; /* Smaller padding for compact buttons */
+        font-size: 12px; /* Smaller font size for buttons */
+    }
+
+    #gallery img {
+        width: 100%; /* Full width for smaller screens */
+        max-width: 150px; /* Limiting max width for images */
+        height: auto; /* Auto-adjust height based on width */
+    }
 }
