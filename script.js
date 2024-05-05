@@ -17,28 +17,17 @@ window.onload = function() {
         "ISFJ", "ISFP", "INTP", "INFP"
     ];
 
+    const baseUrl = 'https://chick31.github.io/Visual_Typing/'; // Adjust this to your GitHub Pages URL
     const buttonsContainer = document.getElementById('buttons');
     const gallery = document.getElementById('gallery');
 
-    // Create category buttons
-    Object.keys(categories).forEach(category => {
-        const button = document.createElement('button');
-        button.textContent = category;
-        button.onclick = function() {
-            gallery.innerHTML = ''; // Clear the gallery
-            categories[category].forEach(type => {
-                loadImagesForType(type);
-            });
-        };
-        buttonsContainer.appendChild(button);
-    });
-
-    // Create individual type buttons
-    personalityTypes.forEach(type => {
+    // Create buttons
+    [...Object.keys(categories), ...personalityTypes].forEach(type => {
         const button = document.createElement('button');
         button.textContent = type;
         button.onclick = function() {
-            gallery.innerHTML = ''; // Clear the gallery first for transition
+            history.pushState({ path: this.path }, '', baseUrl + type);
+            gallery.innerHTML = ''; // Clear the gallery
             loadImagesForType(type);
         };
         buttonsContainer.appendChild(button);
@@ -47,56 +36,51 @@ window.onload = function() {
     function loadImagesForType(type) {
         const folderPath = `Types/${type}/`;
         fetch(`${folderPath}${type}.txt`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`Failed to fetch names: ${response.statusText}`);
-                }
-                return response.text();
-            })
+            .then(response => response.text())
             .then(text => {
                 const names = text.split('\n');
-                displayImagesAndNames(names, folderPath, type); // Pass type here
+                displayImagesAndNames(names, folderPath, type);
             })
             .catch(error => {
                 console.error(error);
-                displayImagesAndNames([], folderPath, type); // Pass type here
+                displayImagesAndNames([], folderPath, type);
             });
     }
 
     function displayImagesAndNames(names, folderPath, type) {
         let imagesLoaded = 0;
-        const totalImages = 500; // Total number of images you expect in each folder
+        const totalImages = names.length; // Use the actual number of names if known or another logic to determine count
 
         for (let j = 1; j <= totalImages; j++) {
             const imgContainer = document.createElement('div');
-            imgContainer.classList.add('img-container'); // For styling purposes
+            imgContainer.classList.add('img-container');
             const img = new Image();
             img.src = `${folderPath}${j}.jpg`;
             img.alt = `Image ${j} from ${type}`;
-            img.style.opacity = '0'; // Start images as invisible
-            img.style.transition = 'opacity 1s ease'; // Smooth transition for opacity
+            img.style.opacity = '0';
+            img.style.transition = 'opacity 1s ease';
 
-            const nameLabel = document.createElement('div'); // Div for the name
-            nameLabel.textContent = names[j - 1] || 'Name unavailable'; // Use the corresponding name or a placeholder
+            const nameLabel = document.createElement('div');
+            nameLabel.textContent = names[j - 1] || 'Name unavailable';
 
-            img.onload = function() {
+            img.onload = () => {
                 imagesLoaded++;
-                img.style.opacity = '1'; // Set the opacity of the loaded image
+                img.style.opacity = '1';
                 if (imagesLoaded === totalImages) {
-                    gallery.style.opacity = '1'; // Make sure the gallery is visible after all images have loaded
+                    gallery.style.opacity = '1';
                 }
             };
 
-            img.onerror = function() {
-                imgContainer.style.display = 'none'; // Hide images that fail to load
+            img.onerror = () => {
+                imgContainer.style.display = 'none';
                 imagesLoaded++;
                 if (imagesLoaded === totalImages) {
-                    gallery.style.opacity = '1'; // Make sure the gallery is visible even if some images failed
+                    gallery.style.opacity = '1';
                 }
             };
 
             imgContainer.appendChild(img);
-            imgContainer.appendChild(nameLabel); // Append the name below the image
+            imgContainer.appendChild(nameLabel);
             gallery.appendChild(imgContainer);
         }
     }
