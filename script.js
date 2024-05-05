@@ -3,7 +3,7 @@ window.onload = function() {
         'Body Temple': ["INTP", "ENTJ", "ISFP", "ESFJ"],
         'Mind Temple': ["ISTP", "ESTJ", "INFP", "ENFJ"],
         'Soul Temple': ["ISTJ", "ESTP", "INFJ", "ENFP"],
-        'Heart Temple': ["ENTP", "INTJ", "ESFP", "ISFJ"],
+        'Heart emple': ["ENTP", "INTJ", "ESFP", "ISFJ"],
         'Crusaders': ["ENTP", "INTP", "ESFJ", "ISFJ"],
         'Wayfarers': ["ENTJ", "INTJ", "ESFP", "ISFP"],
         'Templars': ["ESTP", "INFJ", "ENFJ", "ISTP"],
@@ -11,101 +11,93 @@ window.onload = function() {
     };
 
     const personalityTypes = [
-        "ESTJ", "ESTP", "ENTJ", "ENFJ",
-        "ESFJ", "ESFP", "ENTP", "ENFP",
-        "ISTJ", "ISTP", "INTJ", "INFJ",
-        "ISFJ", "ISFP", "INTP", "INFP"
+        "INTJ", "INTP", "ENTJ", "ENTP",
+        "INFJ", "INFP", "ENFJ", "ENFP",
+        "ISTJ", "ISFJ", "ESTJ", "ESFJ",
+        "ISTP", "ISFP", "ESTP", "ESFP"
     ];
 
-    const baseUrl = 'http://127.0.0.1:5500/'; // Base URL for local development
     const buttonsContainer = document.getElementById('buttons');
     const gallery = document.getElementById('gallery');
 
-    // Create links for categories
+    // Create category buttons
     Object.keys(categories).forEach(category => {
-        const link = document.createElement('a');
-        link.className = 'button';
-        link.textContent = category;
-        link.href = `${baseUrl + category}`;
-        link.onclick = function(event) {
-            event.preventDefault(); // Prevent default link behavior
-            history.pushState({ path: this.path }, '', this.href);
-            gallery.innerHTML = '';
-            categories[category].forEach(loadImagesForType);
+        const button = document.createElement('button');
+        button.textContent = category;
+        button.onclick = function() {
+            gallery.innerHTML = ''; // Clear the gallery
+            categories[category].forEach(type => {
+                loadImagesForType(type);
+            });
         };
-        buttonsContainer.appendChild(link);
+        buttonsContainer.appendChild(button);
     });
 
-    // Create links for individual types
+    // Create individual type buttons
     personalityTypes.forEach(type => {
-        const link = document.createElement('a');
-        link.className = 'button';
-        link.textContent = type;
-        link.href = `${baseUrl + type}`;
-        link.onclick = function(event) {
-            event.preventDefault(); // Prevent default link behavior
-            history.pushState({ path: this.path }, '', this.href);
-            gallery.innerHTML = '';
+        const button = document.createElement('button');
+        button.textContent = type;
+        button.onclick = function() {
+            gallery.innerHTML = ''; // Clear the gallery first for transition
             loadImagesForType(type);
         };
-        buttonsContainer.appendChild(link);
+        buttonsContainer.appendChild(button);
     });
 
     function loadImagesForType(type) {
         const folderPath = `Types/${type}/`;
-        console.log(`Loading type: ${type} from ${folderPath}`);
         fetch(`${folderPath}${type}.txt`)
             .then(response => {
                 if (!response.ok) {
-                    throw new Error(`Failed to fetch ${type}: ${response.statusText}`);
+                    throw new Error(`Failed to fetch names: ${response.statusText}`);
                 }
                 return response.text();
             })
             .then(text => {
                 const names = text.split('\n');
-                console.log(`Loaded names for ${type}:`, names);
-                displayImagesAndNames(names, folderPath, type);
+                displayImagesAndNames(names, folderPath, type); // Pass type here
             })
             .catch(error => {
-                console.error(`Error loading data for ${type}:`, error);
-                displayImagesAndNames([], folderPath, type);
+                console.error(error);
+                displayImagesAndNames([], folderPath, type); // Pass type here
             });
     }
-    
 
     function displayImagesAndNames(names, folderPath, type) {
-        gallery.innerHTML = '';  // Clear the gallery before adding new images
-        gallery.style.opacity = '0';  // Start with gallery invisible
-    
-        let imagesLoaded = 0;  // To track how many images have successfully loaded
-    
-        names.forEach((name, index) => {
+        let imagesLoaded = 0;
+        const totalImages = 400; // Total number of images you expect in each folder
+
+        for (let j = 1; j <= totalImages; j++) {
             const imgContainer = document.createElement('div');
-            imgContainer.classList.add('img-container');
+            imgContainer.classList.add('img-container'); // For styling purposes
             const img = new Image();
-            img.src = `${folderPath}${index + 1}.jpg`;
-            img.alt = `Image ${index + 1} from ${type}`;
-    
-            img.onload = () => {
+            img.src = `${folderPath}${j}.jpg`;
+            img.alt = `Image ${j} from ${type}`;
+            img.style.opacity = '0'; // Start images as invisible
+            img.style.transition = 'opacity 1s ease'; // Smooth transition for opacity
+
+            const nameLabel = document.createElement('div'); // Div for the name
+            nameLabel.textContent = names[j - 1] || 'Name unavailable'; // Use the corresponding name or a placeholder
+
+            img.onload = function() {
                 imagesLoaded++;
-                const nameLabel = document.createElement('div');
-                nameLabel.textContent = name || 'Name unavailable';
-                imgContainer.appendChild(img);
-                imgContainer.appendChild(nameLabel);
-                gallery.appendChild(imgContainer);  // Append only after image is loaded
-    
-                // Check if it's the first image to load and then set a timeout to change the opacity of the gallery
-                if (imagesLoaded === 1) {
-                    setTimeout(() => {
-                        gallery.style.opacity = '1';  // Fade in the gallery after a brief delay
-                    }, 100);  // 100 milliseconds delay
+                img.style.opacity = '1'; // Set the opacity of the loaded image
+                if (imagesLoaded === totalImages) {
+                    gallery.style.opacity = '1'; // Make sure the gallery is visible after all images have loaded
                 }
             };
-    
-            img.onerror = () => {
-                console.error('Failed to load image:', img.src);
-                imgContainer.style.display = 'none';  // Optionally handle error visibility
+
+            img.onerror = function() {
+                imgContainer.style.display = 'none'; // Hide images that fail to load
+                imagesLoaded++;
+                if (imagesLoaded === totalImages) {
+                    gallery.style.opacity = '1'; // Make sure the gallery is visible even if some images failed
+                }
             };
-        });
+
+            imgContainer.appendChild(img);
+            imgContainer.appendChild(nameLabel); // Append the name below the image
+            gallery.appendChild(imgContainer);
+        }
     }
-}
+};
