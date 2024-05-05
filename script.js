@@ -65,7 +65,7 @@ window.onload = function() {
 
     function displayImagesAndNames(names, folderPath, type) {
         let imagesLoaded = 0;
-        const totalImages = 600; // Total number of images you expect in each folder
+        const totalImages = 500; // Total number of images you expect in each folder
 
         for (let j = 1; j <= totalImages; j++) {
             const imgContainer = document.createElement('div');
