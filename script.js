@@ -1,4 +1,15 @@
 window.onload = function() {
+    const categories = {
+        'Body Temple': ["INTP", "ENTJ", "ISFP", "ESFJ"],
+        'Mind Temple': ["ISTP", "ESTJ", "INFP", "ENFJ"],
+        'Soul Temple': ["ISTJ", "ESTP", "INFJ", "ENFP"],
+        'Heart Temple': ["ENTP", "INTJ", "ESFP", "ISFJ"],
+        'Crusaders': ["ENTP", "INTP", "ESFJ", "ISFJ"],
+        'Wayfarers': ["ENTJ", "INTJ", "ESFP", "ISFP"],
+        'Templars': ["ESTP", "INFJ", "ENFJ", "ISTP"],
+        'Philosophers': ["ESTJ", "INFP", "ENFP", "ISTJ"]
+    };
+
     const personalityTypes = [
         "INTJ", "INTP", "ENTJ", "ENTP",
         "INFJ", "INFP", "ENFJ", "ENFP",
@@ -9,6 +20,20 @@ window.onload = function() {
     const buttonsContainer = document.getElementById('buttons');
     const gallery = document.getElementById('gallery');
 
+    // Create category buttons
+    Object.keys(categories).forEach(category => {
+        const button = document.createElement('button');
+        button.textContent = category;
+        button.onclick = function() {
+            gallery.innerHTML = ''; // Clear the gallery
+            categories[category].forEach(type => {
+                loadImagesForType(type);
+            });
+        };
+        buttonsContainer.appendChild(button);
+    });
+
+    // Create individual type buttons
     personalityTypes.forEach(type => {
         const button = document.createElement('button');
         button.textContent = type;
@@ -38,9 +63,9 @@ window.onload = function() {
             });
     }
 
-    function displayImagesAndNames(names, folderPath, type) { // Include type as a parameter
+    function displayImagesAndNames(names, folderPath, type) {
         let imagesLoaded = 0;
-        const totalImages = 200; // Total number of images you expect in each folder
+        const totalImages = 1000; // Total number of images you expect in each folder
 
         for (let j = 1; j <= totalImages; j++) {
             const imgContainer = document.createElement('div');
