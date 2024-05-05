@@ -31,7 +31,7 @@ h1 {
     max-width: 960px; /* Adjust to your preferred max-width to fit 4 buttons */
 }
 
-button {
+.button, button { /* Apply styles to both .button class and button elements */
     background-color: #3498db;
     color: #ffffff;
     border: none;
@@ -43,9 +43,12 @@ button {
     cursor: pointer;
     transition: background-color 0.3s ease;
     width: calc(25% - 10px); /* Calculate width to fit 4 per row, accounting for margin */
+    text-align: center;
+    text-decoration: none; /* Remove underline from links */
+    display: inline-block; /* Allow width and padding to affect <a> tags */
 }
 
-button:hover {
+.button:hover, button:hover {
     background-color: #2980b9;
 }
 
@@ -53,10 +56,10 @@ button:hover {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    min-height: 600px; /* Adjust this value based on your typical content height */
+    min-height: 600px;
     width: 100%;
-    transition: opacity 0.5s ease-out;
-    opacity: 0; /* start invisible to fade in nicely */
+    opacity: 0; /* Ensure it starts invisible */
+    transition: opacity 1.5s ease-out; /* Transition for fading in */
 }
 
 #gallery img {
@@ -90,7 +93,7 @@ button:hover {
         justify-content: space-around;
     }
 
-    button {
+    .button, button {
         padding: 8px 16px;
         font-size: 12px;
         margin: 5px 2px;
