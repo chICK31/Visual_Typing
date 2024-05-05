@@ -100,7 +100,7 @@ button:hover {
     #gallery img {
         width: 100%; /* Full width for smaller screens */
         max-width: 150px; /* Limiting max width for images */
-        height: auto; /* Auto-adjust height based on width */
+        height: 150px; /* Auto-adjust height based on width */
     }
 }
 
