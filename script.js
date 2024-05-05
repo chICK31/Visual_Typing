@@ -17,7 +17,7 @@ window.onload = function() {
         "ISFJ", "ISFP", "INTP", "INFP"
     ];
 
-    const baseUrl = 'https://chick31.github.io/Visual_Typing/'; // Base URL for local development
+    const baseUrl = 'http://127.0.0.1:5500/'; // Base URL for local development
     const buttonsContainer = document.getElementById('buttons');
     const gallery = document.getElementById('gallery');
 
@@ -53,17 +53,25 @@ window.onload = function() {
 
     function loadImagesForType(type) {
         const folderPath = `Types/${type}/`;
+        console.log(`Loading type: ${type} from ${folderPath}`);
         fetch(`${folderPath}${type}.txt`)
-            .then(response => response.text())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch ${type}: ${response.statusText}`);
+                }
+                return response.text();
+            })
             .then(text => {
                 const names = text.split('\n');
+                console.log(`Loaded names for ${type}:`, names);
                 displayImagesAndNames(names, folderPath, type);
             })
             .catch(error => {
-                console.error(error);
+                console.error(`Error loading data for ${type}:`, error);
                 displayImagesAndNames([], folderPath, type);
             });
     }
+    
 
     function displayImagesAndNames(names, folderPath, type) {
         gallery.innerHTML = '';  // Clear the gallery before adding new images
@@ -100,8 +108,4 @@ window.onload = function() {
             };
         });
     }
-    
-    
-
-    
 }
