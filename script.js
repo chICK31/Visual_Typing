@@ -11,10 +11,10 @@ window.onload = function() {
     };
 
     const personalityTypes = [
-        "INTJ", "INTP", "ENTJ", "ENTP",
-        "INFJ", "INFP", "ENFJ", "ENFP",
-        "ISTJ", "ISFJ", "ESTJ", "ESFJ",
-        "ISTP", "ISFP", "ESTP", "ESFP"
+        "ESTJ", "ESTP", "ENTJ", "ENFJ",
+        "ESFJ", "ESFP", "ENTP", "ENFP",
+        "ISTJ", "ISTP", "INTJ", "INFJ",
+        "ISFJ", "ISFP", "INTP", "INFP"
     ];
 
     const buttonsContainer = document.getElementById('buttons');
