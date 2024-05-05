@@ -73,21 +73,28 @@ button:hover {
 /* Mobile-specific Styles */
 @media (max-width: 768px) {
     body {
-        padding: 10px; /* Reduced padding for smaller screens */
+        padding: 5px; /* Reduced padding for smaller screens */
     }
 
     h1 {
-        font-size: 20px; /* Smaller font size for smaller screens */
+        font-size: 18px; /* Further reduce font size for small screens */
         margin-bottom: 10px; /* Reduced margin for compact layout */
     }
 
     #buttons {
         margin-bottom: 10px;
+        display: flex;
+        flex-wrap: wrap; /* Allow buttons to wrap onto the next line */
+        justify-content: space-around; /* Evenly space buttons on each line */
+        width: 100%; /* Ensure full width usage */
     }
 
     button {
-        padding: 8px 16px; /* Smaller padding for compact buttons */
+        padding: 8px 16px; /* Adjusted padding for compact buttons */
         font-size: 12px; /* Smaller font size for buttons */
+        margin: 5px 2px; /* Small horizontal margin to keep buttons close */
+        min-width: 100px; /* Minimum width to ensure readability */
+        box-sizing: border-box; /* Include padding and border in the element's total width */
     }
 
     #gallery img {
@@ -96,3 +103,4 @@ button:hover {
         height: auto; /* Auto-adjust height based on width */
     }
 }
+
