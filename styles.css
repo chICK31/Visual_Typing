@@ -27,6 +27,8 @@ h1 {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    width: 100%; /* Control the total width to align buttons */
+    max-width: 960px; /* Adjust to your preferred max-width to fit 4 buttons */
 }
 
 button {
@@ -40,6 +42,7 @@ button {
     font-size: 14px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    width: calc(25% - 10px); /* Calculate width to fit 4 per row, accounting for margin */
 }
 
 button:hover {
@@ -83,24 +86,21 @@ button:hover {
 
     #buttons {
         margin-bottom: 10px;
-        display: flex;
-        flex-wrap: wrap; /* Allow buttons to wrap onto the next line */
-        justify-content: space-around; /* Evenly space buttons on each line */
-        width: 100%; /* Ensure full width usage */
+        flex-wrap: wrap;
+        justify-content: space-around;
     }
 
     button {
-        padding: 8px 16px; /* Adjusted padding for compact buttons */
-        font-size: 12px; /* Smaller font size for buttons */
-        margin: 5px 2px; /* Small horizontal margin to keep buttons close */
-        min-width: 100px; /* Minimum width to ensure readability */
-        box-sizing: border-box; /* Include padding and border in the element's total width */
+        padding: 8px 16px;
+        font-size: 12px;
+        margin: 5px 2px;
+        min-width: 100px; /* Keep minimum width to maintain readability */
+        width: auto; /* Allow auto width adjustment on smaller screens */
     }
 
     #gallery img {
-        width: 100%; /* Full width for smaller screens */
-        max-width: 150px; /* Limiting max width for images */
-        height: 150px; /* Auto-adjust height based on width */
+        width: 100%;
+        max-width: 150px; /* Adjust max width for better mobile view */
+        height: 150px;
     }
 }
-
