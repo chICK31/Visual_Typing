@@ -1,0 +1,18 @@
+<html><body onload="document.forms[0].submit()">
+<form action="https://ckf01.uisd.net/cgi-bin/blockpage/blockpage.cgi" method="GET">
+<input type="Hidden" name="URL" value="lookaside.instagram.com/seo/google_widget/crawler/?media_id=2563586884797276226">
+<input type="Hidden" name="CAT" value="SocialNetworking (Local)">
+<input type="Hidden" name="CATNO" value="1043">
+<input type="Hidden" name="ACC" value="136927/united.uisd">
+<input type="Hidden" name="WHY" value="Policy=high-student; AD Group=seniors-stu-iboss">
+<input type="Hidden" name="MOD" value="2">
+<input type="Hidden" name="APP" value="tiktok">
+<input type="Hidden" name="ISO" value="58 Sec(s)">
+<input type="Hidden" name="IPA" value="10.254.255.212">
+<input type="Hidden" name="RAW" value="https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=2563586884797276226">
+<input type="Hidden" name="AUTH0" value=",SocialNetworking (Local)">
+<input type="Hidden" name="PGE" value="https://ckf01.uisd.net/cgi-bin/blockpage/blockpage.cgi">
+<input type="Hidden" name="STR" value="null,null,null,null,null">
+<input type="Hidden" name="SRV" value="null">
+<input type="Hidden" name="AUTH1" value=",lookaside.instagram.com/seo/google_widget/crawler/?media_id=2563586884797276226,SocialNetworking (Local)">
+</form></body></html>
