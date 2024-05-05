@@ -17,20 +17,38 @@ window.onload = function() {
         "ISFJ", "ISFP", "INTP", "INFP"
     ];
 
-    const baseUrl = 'https://chick31.github.io/Visual_Typing/'; // Adjust this to your GitHub Pages URL
+    const baseUrl = 'https://chick31.github.io/Visual_Typing/'; // Base URL for local development
     const buttonsContainer = document.getElementById('buttons');
     const gallery = document.getElementById('gallery');
 
-    // Create buttons
-    [...Object.keys(categories), ...personalityTypes].forEach(type => {
-        const button = document.createElement('button');
-        button.textContent = type;
-        button.onclick = function() {
-            history.pushState({ path: this.path }, '', baseUrl + type);
-            gallery.innerHTML = ''; // Clear the gallery
+    // Create links for categories
+    Object.keys(categories).forEach(category => {
+        const link = document.createElement('a');
+        link.className = 'button';
+        link.textContent = category;
+        link.href = `${baseUrl + category}`;
+        link.onclick = function(event) {
+            event.preventDefault(); // Prevent default link behavior
+            history.pushState({ path: this.path }, '', this.href);
+            gallery.innerHTML = '';
+            categories[category].forEach(loadImagesForType);
+        };
+        buttonsContainer.appendChild(link);
+    });
+
+    // Create links for individual types
+    personalityTypes.forEach(type => {
+        const link = document.createElement('a');
+        link.className = 'button';
+        link.textContent = type;
+        link.href = `${baseUrl + type}`;
+        link.onclick = function(event) {
+            event.preventDefault(); // Prevent default link behavior
+            history.pushState({ path: this.path }, '', this.href);
+            gallery.innerHTML = '';
             loadImagesForType(type);
         };
-        buttonsContainer.appendChild(button);
+        buttonsContainer.appendChild(link);
     });
 
     function loadImagesForType(type) {
@@ -48,40 +66,42 @@ window.onload = function() {
     }
 
     function displayImagesAndNames(names, folderPath, type) {
-        let imagesLoaded = 0;
-        const totalImages = names.length; // Use the actual number of names if known or another logic to determine count
-
-        for (let j = 1; j <= totalImages; j++) {
+        gallery.innerHTML = '';  // Clear the gallery before adding new images
+        gallery.style.opacity = '0';  // Start with gallery invisible
+    
+        let imagesLoaded = 0;  // To track how many images have successfully loaded
+    
+        names.forEach((name, index) => {
             const imgContainer = document.createElement('div');
             imgContainer.classList.add('img-container');
             const img = new Image();
-            img.src = `${folderPath}${j}.jpg`;
-            img.alt = `Image ${j} from ${type}`;
-            img.style.opacity = '0';
-            img.style.transition = 'opacity 1s ease';
-
-            const nameLabel = document.createElement('div');
-            nameLabel.textContent = names[j - 1] || 'Name unavailable';
-
+            img.src = `${folderPath}${index + 1}.jpg`;
+            img.alt = `Image ${index + 1} from ${type}`;
+    
             img.onload = () => {
                 imagesLoaded++;
-                img.style.opacity = '1';
-                if (imagesLoaded === totalImages) {
-                    gallery.style.opacity = '1';
+                const nameLabel = document.createElement('div');
+                nameLabel.textContent = name || 'Name unavailable';
+                imgContainer.appendChild(img);
+                imgContainer.appendChild(nameLabel);
+                gallery.appendChild(imgContainer);  // Append only after image is loaded
+    
+                // Check if it's the first image to load and then set a timeout to change the opacity of the gallery
+                if (imagesLoaded === 1) {
+                    setTimeout(() => {
+                        gallery.style.opacity = '1';  // Fade in the gallery after a brief delay
+                    }, 100);  // 100 milliseconds delay
                 }
             };
-
+    
             img.onerror = () => {
-                imgContainer.style.display = 'none';
-                imagesLoaded++;
-                if (imagesLoaded === totalImages) {
-                    gallery.style.opacity = '1';
-                }
+                console.error('Failed to load image:', img.src);
+                imgContainer.style.display = 'none';  // Optionally handle error visibility
             };
-
-            imgContainer.appendChild(img);
-            imgContainer.appendChild(nameLabel);
-            gallery.appendChild(imgContainer);
-        }
+        });
     }
-};
+    
+    
+
+    
+}
