@@ -58,8 +58,6 @@ h1 {
     justify-content: center;
     min-height: 600px;
     width: 100%;
-    opacity: 0; /* Ensure it starts invisible */
-    transition: opacity 1.5s ease-out; /* Transition for fading in */
 }
 
 #gallery img {
