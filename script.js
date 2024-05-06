@@ -75,9 +75,9 @@ window.onload = function() {
             nameLabel.textContent = name || 'Name unavailable';
 
             img.onload = img.onerror = function() {
-                imgContainer.style.display = img.complete && img.naturalHeight !== 0 ? 'block' : 'none'; // Hide on error
-                gallery.appendChild(imgContainer);
-            };
+    imgContainer.style.display = 'block'; // Always display the container
+    gallery.appendChild(imgContainer);
+};
 
             imgContainer.appendChild(img);
             imgContainer.appendChild(nameLabel);
