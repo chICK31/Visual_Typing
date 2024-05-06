@@ -34,7 +34,7 @@ window.onload = function() {
         const target = event.target;
         if (target.tagName === 'BUTTON') {
             const type = target.textContent;
-            gallery.innerHTML = '';
+            clearGallery(); // Clear the gallery before loading new images
             if (categories[type]) {
                 categories[type].forEach(loadImagesForType);
             } else {
@@ -42,6 +42,12 @@ window.onload = function() {
             }
         }
     });
+
+    function clearGallery() {
+        while (gallery.firstChild) {
+            gallery.removeChild(gallery.firstChild);
+        }
+    }
 
     function loadImagesForType(type) {
         const folderPath = `Types/${type}/`;
@@ -75,9 +81,9 @@ window.onload = function() {
             nameLabel.textContent = name || 'Name unavailable';
 
             img.onload = img.onerror = function() {
-    imgContainer.style.display = 'block'; // Always display the container
-    gallery.appendChild(imgContainer);
-};
+                imgContainer.style.display = 'block'; // Ensure the container is always displayed
+                gallery.appendChild(imgContainer);
+            };
 
             imgContainer.appendChild(img);
             imgContainer.appendChild(nameLabel);
