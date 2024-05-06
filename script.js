@@ -63,7 +63,6 @@ window.onload = function() {
     }
 
     function displayImagesAndNames(names, folderPath, type) {
-        const totalImages = names.length; // Dynamic number of images
         names.forEach((name, index) => {
             const imgContainer = document.createElement('div');
             imgContainer.classList.add('img-container');
@@ -71,14 +70,11 @@ window.onload = function() {
             const img = new Image();
             img.src = `${folderPath}${index + 1}.jpg`;
             img.alt = `Image ${index + 1} from ${type}`;
-            img.style.opacity = '0';
-            img.style.transition = 'opacity 1s ease';
 
             const nameLabel = document.createElement('div');
             nameLabel.textContent = name || 'Name unavailable';
 
             img.onload = img.onerror = function() {
-                img.style.opacity = '1'; // Set opacity on load or error
                 imgContainer.style.display = img.complete && img.naturalHeight !== 0 ? 'block' : 'none'; // Hide on error
                 gallery.appendChild(imgContainer);
             };
