@@ -31,6 +31,15 @@ h1 {
     max-width: 960px; /* Adjust to your preferred max-width to fit 4 buttons */
 }
 
+a {
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%; /* Control the total width to align buttons */
+    max-width: 960px; /* Adjust to your preferred max-width to fit 4 buttons */
+}
+
 .button, button { /* Apply styles to both .button class and button elements */
     background-color: #3498db;
     color: #ffffff;
@@ -85,13 +94,13 @@ h1 {
         margin-bottom: 10px; /* Reduced margin for compact layout */
     }
 
-    #buttons {
+    #a {
         margin-bottom: 10px;
         flex-wrap: wrap;
         justify-content: space-around;
     }
 
-    .button, button {
+    .a, a {
         padding: 8px 16px;
         font-size: 12px;
         margin: 5px 2px;
@@ -104,4 +113,91 @@ h1 {
         max-width: 150px; /* Adjust max width for better mobile view */
         height: 150px;
     }
+}
+
+.img-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+}
+
+.img-container img {
+    width: 200px; /* Adjust width as needed */
+    height: 200px; /* Adjust height as needed */
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.img-container div {
+    margin-top: 8px; /* Space between the image and the name label */
+    text-align: center; /* Center the name under the image */
+    color: #333; /* Text color for the name */
+    font-size: 16px; /* Adjust font size as needed */
+}
+
+/* Ensure gallery containers are aligned properly */
+#gallery-ENFJ, #gallery-INTP, #gallery-ESFP {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+/* Additional responsive adjustments can be added here */
+@media (max-width: 768px) {
+    .img-container img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .img-container div {
+        font-size: 12px; /* Smaller font size on smaller screens */
+    }
+}
+
+/* Basic reset and body styling omitted for brevity */
+
+.links-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.links-container a {
+    background-color: #3498db;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 14px;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+.links-container a:hover {
+    background-color: #2980b9;
+}
+
+.gradient-link {
+    background-image: linear-gradient(180deg, #000000, #ffffff);
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    background-clip: padding-box; /* Apply gradient to the padding area */
+    -webkit-background-clip: padding-box; /* For Safari */
+    border: 2px solid transparent; /* Initially transparent border */
+    transition: border-color 0.3s ease, transform 0.3s ease; /* Transition for border color and transform */
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
+}
+
+.gradient-link:hover {
+    border-color: #ffffff; /* Change border color on hover */
+    transform: scale(1.05); /* Add a slight scale effect on hover for a cool look */
 }
