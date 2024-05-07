@@ -65,9 +65,9 @@ a {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    min-height: 600px;
-    width: 100%;
+    margin-bottom: 20px;
 }
+
 
 #gallery img {
     width: 200px;
@@ -138,12 +138,13 @@ a {
 }
 
 /* Ensure gallery containers are aligned properly */
-#gallery-ENFJ, #gallery-INTP, #gallery-ESFP {
+#gallery {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     margin-bottom: 20px;
 }
+
 
 /* Additional responsive adjustments can be added here */
 @media (max-width: 768px) {
