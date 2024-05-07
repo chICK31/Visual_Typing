@@ -3,7 +3,7 @@ window.onload = function() {
         'Body Temple': ["INTP", "ENTJ", "ISFP", "ESFJ"],
         'Mind Temple': ["ISTP", "ESTJ", "INFP", "ENFJ"],
         'Soul Temple': ["ISTJ", "ESTP", "INFJ", "ENFP"],
-        'Heart Temple': ["ENTP", "INTJ", "ESFP", "ISFJ"],
+        'Heart emple': ["ENTP", "INTJ", "ESFP", "ISFJ"],
         'Crusaders': ["ENTP", "INTP", "ESFJ", "ISFJ"],
         'Wayfarers': ["ENTJ", "INTJ", "ESFP", "ISFP"],
         'Templars': ["ESTP", "INFJ", "ENFJ", "ISTP"],
@@ -20,34 +20,29 @@ window.onload = function() {
     const buttonsContainer = document.getElementById('buttons');
     const gallery = document.getElementById('gallery');
 
-    // Create category buttons using document fragment
-    const fragment = document.createDocumentFragment();
-    Object.keys(categories).concat(personalityTypes).forEach(type => {
+    // Create category buttons
+    Object.keys(categories).forEach(category => {
+        const button = document.createElement('button');
+        button.textContent = category;
+        button.onclick = function() {
+            gallery.innerHTML = ''; // Clear the gallery
+            categories[category].forEach(type => {
+                loadImagesForType(type);
+            });
+        };
+        buttonsContainer.appendChild(button);
+    });
+
+    // Create individual type buttons
+    personalityTypes.forEach(type => {
         const button = document.createElement('button');
         button.textContent = type;
-        fragment.appendChild(button);
+        button.onclick = function() {
+            gallery.innerHTML = ''; // Clear the gallery first for transition
+            loadImagesForType(type);
+        };
+        buttonsContainer.appendChild(button);
     });
-    buttonsContainer.appendChild(fragment);
-
-    // Event delegation for buttons
-    buttonsContainer.addEventListener('click', function(event) {
-        const target = event.target;
-        if (target.tagName === 'BUTTON') {
-            const type = target.textContent;
-            clearGallery(); // Clear the gallery before loading new images
-            if (categories[type]) {
-                categories[type].forEach(loadImagesForType);
-            } else {
-                loadImagesForType(type);
-            }
-        }
-    });
-
-    function clearGallery() {
-        while (gallery.firstChild) {
-            gallery.removeChild(gallery.firstChild);
-        }
-    }
 
     function loadImagesForType(type) {
         const folderPath = `Types/${type}/`;
@@ -60,33 +55,49 @@ window.onload = function() {
             })
             .then(text => {
                 const names = text.split('\n');
-                displayImagesAndNames(names, folderPath, type);
+                displayImagesAndNames(names, folderPath, type); // Pass type here
             })
             .catch(error => {
                 console.error(error);
-                displayImagesAndNames([], folderPath, type);
+                displayImagesAndNames([], folderPath, type); // Pass type here
             });
     }
 
     function displayImagesAndNames(names, folderPath, type) {
-        names.forEach((name, index) => {
+        let imagesLoaded = 0;
+        const totalImages = 400; // Total number of images you expect in each folder
+
+        for (let j = 1; j <= totalImages; j++) {
             const imgContainer = document.createElement('div');
-            imgContainer.classList.add('img-container');
-
+            imgContainer.classList.add('img-container'); // For styling purposes
             const img = new Image();
-            img.src = `${folderPath}${index + 1}.jpg`;
-            img.alt = `Image ${index + 1} from ${type}`;
+            img.src = `${folderPath}${j}.jpg`;
+            img.alt = `Image ${j} from ${type}`;
+            img.style.opacity = '0'; // Start images as invisible
+            img.style.transition = 'opacity 1s ease'; // Smooth transition for opacity
 
-            const nameLabel = document.createElement('div');
-            nameLabel.textContent = name || 'Name unavailable';
+            const nameLabel = document.createElement('div'); // Div for the name
+            nameLabel.textContent = names[j - 1] || 'Name unavailable'; // Use the corresponding name or a placeholder
 
-            img.onload = img.onerror = function() {
-                imgContainer.style.display = 'block'; // Ensure the container is always displayed
-                gallery.appendChild(imgContainer);
+            img.onload = function() {
+                imagesLoaded++;
+                img.style.opacity = '1'; // Set the opacity of the loaded image
+                if (imagesLoaded === totalImages) {
+                    gallery.style.opacity = '1'; // Make sure the gallery is visible after all images have loaded
+                }
+            };
+
+            img.onerror = function() {
+                imgContainer.style.display = 'none'; // Hide images that fail to load
+                imagesLoaded++;
+                if (imagesLoaded === totalImages) {
+                    gallery.style.opacity = '1'; // Make sure the gallery is visible even if some images failed
+                }
             };
 
             imgContainer.appendChild(img);
-            imgContainer.appendChild(nameLabel);
-        });
+            imgContainer.appendChild(nameLabel); // Append the name below the image
+            gallery.appendChild(imgContainer);
+        }
     }
 };
