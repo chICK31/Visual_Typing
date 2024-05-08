@@ -139,7 +139,7 @@ a {
 
 /* Ensure gallery containers are aligned properly */
 #gallery-ENFJ, #gallery-ESTP, #gallery-ENTJ, #gallery-ENFJ, #gallery-ESFJ, #gallery-ESFP, #gallery-ENTP, #gallery-ENFP, #gallery-ISTJ,
-#gallery-ISTP, #gallery-INTJ, #gallery-INFJ, #gallery-ISFJ, #gallery-ISFP, #gallery-INTP, #gallery-INFP {
+#gallery-ISTP, #gallery-INTJ, #gallery-INFJ, #gallery-ISFJ, #gallery-ISFP, #gallery-INTP, #gallery-INFP, #gallery-ESTJ {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
