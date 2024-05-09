@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Visual Typing Game</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="Guessing_game.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visual Typing Personality Gallery</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="clover.jpg" type="image/jpeg">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content="Visual Typing Personality Gallery" />
+    <meta property="og:description" content="Explore the gallery of personality types through visual typing! This gallery allows visitors to navigate through various personality profiles, each represented with distinct visual styles that encapsulate the essence of the personality types!" />
+    <meta property="og:image" content="https://chick31.github.io/Visual_Typing/clover.jpg" />
+    <meta property="og:url" content="https://chick31.github.io/Visual_Typing/" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Visual Typing Personality Gallery">
+    <meta name="twitter:description" content="Explore the gallery of personality types through visual typing!This gallery allows visitors to navigate through various personality profiles, each represented with distinct visual styles that encapsulate the essence of the personality types!">
+    <meta name="twitter:image" content="https://chick31.github.io/Visual_Typing/clover.jpg">
+    </head>
+<body>
+    <div id="game">
+        <div id="question">What type is this person?</div>
+        <img id="personImage" src="" alt="Type Guess" style="width: auto; height: 450px;">
+        <div id="mbti-buttons">
+            <button class="button-glow" onclick="selectType('ESTJ')">ESTJ</button>
+            <button class="button-glow" onclick="selectType('ESTP')">ESTP</button>
+            <button class="button-glow" onclick="selectType('ENTJ')">ENTJ</button>
+            <button class="button-glow" onclick="selectType('ENFJ')">ENFJ</button>
+            <button class="button-glow" onclick="selectType('ESFJ')">ESFJ</button>
+            <button class="button-glow" onclick="selectType('ESFP')">ESFP</button>
+            <button class="button-glow" onclick="selectType('ENTP')">ENTP</button>
+            <button class="button-glow" onclick="selectType('ENFP')">ENFP</button>
+            <button class="button-glow" onclick="selectType('ISTJ')">ISTJ</button>
+            <button class="button-glow" onclick="selectType('ISTP')">ISTP</button>
+            <button class="button-glow" onclick="selectType('INTJ')">INTJ</button>
+            <button class="button-glow" onclick="selectType('INFJ')">INFJ</button>
+            <button class="button-glow" onclick="selectType('ISFJ')">ISFJ</button>
+            <button class="button-glow" onclick="selectType('ISFP')">ISFP</button>
+            <button class="button-glow" onclick="selectType('INTP')">INTP</button>
+            <button class="button-glow" onclick="selectType('INFP')">INFP</button>
+        </div>
+        
+            <button onclick="submitGuess()">Submit</button>
+            <div id="overlay" style="display: none;">
+                <div id="message-container">
+                    <p id="game-message">Good job!</p>
+                    <button onclick="closeOverlay()">Continue</button>
+                </div>
+            </div>
+            
+</body>
+</html>

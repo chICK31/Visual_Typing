@@ -1,3 +1,4 @@
+
 /* Basic Reset */
 * {
     margin: 0;
@@ -201,4 +202,78 @@ a {
 .gradient-link:hover {
     border-color: #ffffff; /* Change border color on hover */
     transform: scale(1.05); /* Add a slight scale effect on hover for a cool look */
+}
+#game {
+    text-align: center;
+    margin-top: 50px;
+}
+#mbti-buttons button {
+    margin: 10px;
+    padding: 10px;
+}
+.button-glow {
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.selected {
+    box-shadow: 0 0 15px 5px rgba(51, 255, 0, 0.75); /* Yellow glow */
+}
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+#message-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    text-align: center;
+}
+
+#message-container p {
+    font-size: 48px;
+    font-weight: bold;
+    color: #FF6347;
+    margin-bottom: 20px;  /* Ensure there's space between the text and the button */
+}
+
+#message-container button {
+    padding: 12px 24px;
+    font-size: 18px;
+    background-color: #4CAF50; /* Green background */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 20px; /* Adds vertical space between the message and the button */
+    display: inline-block; /* Ensures the button respects text alignment */
+    width: 100%; /* Ensures the button stretches to fill its container */
+    text-align: center; /* Explicitly center the text inside the button */
+}
+
+
+
+
+#message-container button:hover {
+    background-color: #028f09; /* Slightly darker green on hover */
+}
+
+
+@keyframes pop-in {
+    0% { transform: scale(0); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
 }
