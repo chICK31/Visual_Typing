@@ -222,12 +222,14 @@ a {
     text-align: center;
     margin-top: 50px;
 }
-#mbti-buttons button {
-    margin: 10px;
-    padding: 10px;
+#mbti-buttons {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 8px;
+  margin-top: 16px;
 }
-.button-glow {
-    transition: box-shadow 0.3s ease-in-out;
+  .button-glow {
+    width: 100%;
 }
 
 .selected {
