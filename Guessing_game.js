@@ -40,12 +40,17 @@ async function getRandomImage() {
     
     function submitGuess() {
         const guessedType = selectedType; // Type guessed by the user
-        const resultText = (guessedType === currentType) ? "Good job!" : "Better luck next time!"; // Compare against currentType
+        // Update resultText to include both the guessed type and the correct type when the guess is wrong
+        const resultText = (guessedType === currentType) 
+            ? `Good job! The correct type is ${currentType}.` 
+            : `You guessed ${guessedType}, but the correct type was ${currentType}.`;
         document.getElementById('game-message').textContent = resultText;
         document.getElementById('overlay').style.display = 'flex'; // Show the overlay
         document.getElementById('game-message').style.transform = 'scale(1)'; // Trigger the pop-in effect
         getRandomImage(); // Load a new image for the next round after checking the guess
     }
+    
+    
     
     function closeOverlay() {
         document.getElementById('overlay').style.display = 'none'; // Hide the overlay
