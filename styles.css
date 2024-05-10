@@ -20,7 +20,6 @@ body {
 
 h1 {
     color: #2c3e50;
-    margin-bottom: 20px;
 }
 
 
@@ -221,13 +220,12 @@ a {
 }
 #game {
     text-align: center;
-    margin-top: 50px;
 }
 #mbti-buttons {
     display: grid;
     grid-template-columns: repeat(4,1fr);
     gap: 8px;
-    margin-top: 16px;
+
 }
   .button-glow {
     width: 100%;
