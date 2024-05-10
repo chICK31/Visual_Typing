@@ -44,8 +44,8 @@ async function getRandomImage() {
         const guessedType = selectedType; // Type guessed by the user
         // Update resultText to include both the guessed type and the correct type when the guess is wrong
         const resultText = guessedType === currentType
-            ? `<span style="color: green;">${currentType}</span>`
-            : `<span style="color: red;">${guessedType}</span> <span style="color: green;">${currentType}</span>`;
+            ? `<h1>Right Answer!</h1> <span style="color: green;">${currentType}</span>.`
+            : `<h1>Wrong Answer.</h1> <span style="color: red;">${guessedType}</span> <span style="color: green;">${currentType}</span>.`;
         
         document.getElementById('game-message').innerHTML = resultText; // Use innerHTML to render HTML inside
         document.getElementById('overlay').style.display = 'flex'; // Show the overlay
@@ -57,6 +57,7 @@ async function getRandomImage() {
         
         getRandomImage(); // Load a new image for the next round after checking the guess
     }
+    
     
     
     function resetButtonStates() {
