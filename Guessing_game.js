@@ -38,17 +38,34 @@ async function getRandomImage() {
         event.target.classList.add('selected');
     }
     
+    let selectedType = '';  // This variable will store the guessed type by the user
+
     function submitGuess() {
         const guessedType = selectedType; // Type guessed by the user
         // Update resultText to include both the guessed type and the correct type when the guess is wrong
-        const resultText = (guessedType === currentType) 
-            ? `Good job! The correct type is ${currentType}.` 
-            : `You guessed ${guessedType}, but the correct type was ${currentType}.`;
-        document.getElementById('game-message').textContent = resultText;
+        const resultText = guessedType === currentType
+            ? `<span style="color: green;">${currentType}</span>`
+            : `<span style="color: red;">${guessedType}</span> <span style="color: green;">${currentType}</span>`;
+        
+        document.getElementById('game-message').innerHTML = resultText; // Use innerHTML to render HTML inside
         document.getElementById('overlay').style.display = 'flex'; // Show the overlay
         document.getElementById('game-message').style.transform = 'scale(1)'; // Trigger the pop-in effect
+        
+        // Reset the guessed type and the selected state of the button
+        selectedType = '';
+        resetButtonStates();
+        
         getRandomImage(); // Load a new image for the next round after checking the guess
     }
+    
+    
+    function resetButtonStates() {
+        const buttons = document.querySelectorAll('.button-glow');
+        buttons.forEach(button => {
+            button.classList.remove('selected');
+        });
+    }
+    
     
     
     
