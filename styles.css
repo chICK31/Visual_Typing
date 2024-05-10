@@ -56,11 +56,13 @@ a {
     text-align: center;
     text-decoration: none; /* Remove underline from links */
     display: inline-block; /* Allow width and padding to affect <a> tags */
+    
 }
 
 .button:hover, button:hover {
     background-color: #2980b9;
-}
+    transform: scale(1.1); /* Slightly scale up the button when hovered */
+    }
 
 #gallery {
     display: flex;
@@ -224,12 +226,13 @@ a {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.7);
-    display: flex;
+    background-color: rgba(0, 0, 0, 0.7);  /* semi-transparent black */
+    display: none;  /* hidden initially */
     align-items: center;
     justify-content: center;
-    z-index: 1000;
+    z-index: 1000;  /* ensure it's on top */
 }
+
 
 #message-container {
     display: flex;
@@ -276,4 +279,27 @@ a {
     0% { transform: scale(0); }
     50% { transform: scale(1.2); }
     100% { transform: scale(1); }
+}
+#submitBtn {
+    background-color: #4CAF50; /* Green background */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 24px;
+    font-size: 18px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Premium font style */
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    outline: none; /* Removes the outline to make it look cleaner */
+}
+
+#submitBtn:hover {
+    background-color: #235326; /* Slightly darker green on hover */
+    transform: scale(1.1); /* Slightly scale up the button when hovered */
+}
+
+#submitBtn:active {
+    background-color: #5a2626; /* Even darker green when clicked */
+    transform: scale(0.95); /* Slightly scale down the button when clicked */
 }
