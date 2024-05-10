@@ -23,14 +23,7 @@ h1 {
     margin-bottom: 20px;
 }
 
-#buttons {
-    margin-bottom: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 100%; /* Control the total width to align buttons */
-    max-width: 960px; /* Adjust to your preferred max-width to fit 4 buttons */
-}
+
 
 a {
     margin-bottom: 20px;
@@ -41,28 +34,36 @@ a {
     max-width: 960px; /* Adjust to your preferred max-width to fit 4 buttons */
 }
 
-.button, button { /* Apply styles to both .button class and button elements */
+.button, button {
     background-color: #3498db;
     color: #ffffff;
     border: none;
     padding: 10px 20px;
-    margin: 5px;
+    margin: 5px; /* Ensure margin to space out the buttons */
     border-radius: 5px;
     text-transform: uppercase;
     font-size: 14px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    width: calc(25% - 10px); /* Calculate width to fit 4 per row, accounting for margin */
+    width: 220px; /* Static width for each button */
     text-align: center;
-    text-decoration: none; /* Remove underline from links */
-    display: inline-block; /* Allow width and padding to affect <a> tags */
-    
+    text-decoration: none;
+    display: inline-block; /* Maintain inline-block for proper layout */
+}
+
+#buttons {
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%; /* Control the total width to align buttons */
+    max-width: 960px; /* Ensure the container width fits exactly 4 buttons accounting for margin */
 }
 
 .button:hover, button:hover {
     background-color: #2980b9;
     transform: scale(1.1); /* Slightly scale up the button when hovered */
-    }
+}
 
 #gallery {
     display: flex;
@@ -223,13 +224,20 @@ a {
     margin-top: 50px;
 }
 #mbti-buttons {
-  display: grid;
-  grid-template-columns: repeat(4,1fr);
-  gap: 8px;
-  margin-top: 16px;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 8px;
+    margin-top: 16px;
 }
   .button-glow {
     width: 100%;
+    
+}
+#personImage {
+    width: 100%; /* Use full width of the screen or container */
+    height: auto; /* Maintain aspect ratio */
+    max-height: 500px; /* Limit the maximum height */
+    align-self: center; /* This ensures the image is centered in its own space */
 }
 
 .selected {
@@ -321,4 +329,10 @@ a {
 #submitBtn:active {
     background-color: #5a2626; /* Even darker green when clicked */
     transform: scale(0.95); /* Slightly scale down the button when clicked */
+}
+#content {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* This centers the child elements vertically */
+    width: 100%; /* Ensures the container takes full width */
 }
