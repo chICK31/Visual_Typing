@@ -296,6 +296,10 @@ a {
     100% { transform: scale(1); }
 }
 #submitBtn {
+    display: block;  /* Change display to block */
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content; 
     background-color: #4CAF50; /* Green background */
     color: white;
     border: none;
