@@ -116,6 +116,13 @@ a {
         max-width: 150px; /* Adjust max width for better mobile view */
         height: 150px;
     }
+
+    #personImage {
+        width: 100%; /* Use full width of the screen */
+        height: auto; /* Maintain aspect ratio */
+        max-height: 300px; /* Limit the maximum height */
+    }
+
 }
 
 .img-container {
