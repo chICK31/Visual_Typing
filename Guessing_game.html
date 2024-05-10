@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+    <head>
+        <meta charset="UTF-8">
+        <title>Visual Typing Game</title>
+    <link rel="stylesheet" href="Something.css">
+    <script src="Guessing_game.js" defer></script>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Visual Typing Personality Gallery</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="Guessingclover.jpg" type="image/jpeg">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="Guessing_game.js" defer></script>
+    <link rel="icon" href="clover.jpg" type="image/jpeg">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:title" content="Visual Typing Personality Gallery" />
     <meta property="og:description" content="Welcome to the VISUAL TYPING GUESSING GAME!!! It's where you guess their types... VISUALLY!!! YAY" />
-    <meta property="og:image" content="https://chick31.github.io/Visual_Typing/Guessingclover.jpg" />
+    <meta property="og:image" content="https://chick31.github.io/Visual_Typing/clover.jpg" />
     <meta property="og:url" content="https://chick31.github.io/Visual_Typing/" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Visual Typing Personality Gallery">
     <meta name="twitter:description" content="Welcome to the VISUAL TYPING GUESSING GAME!!! It's where you guess their types... VISUALLY!!! YAY">
-    <meta name="twitter:image" content="https://chick31.github.io/Visual_Typing/Guessingclover.jpg">
-</head>
+    <meta name="twitter:image" content="https://chick31.github.io/Visual_Typing/clover.jpg">
+    </head>
 <body>
     <div id="game">
         <div id="question">What type is this person?</div>
@@ -43,7 +47,7 @@
             <button class="button-glow" onclick="selectType('INFP')">INFP</button>
         </div>
         
-            <button onclick="submitGuess()">Submit</button>
+        <button id="submitBtn" onclick="submitGuess()">Submit</button>
             <div id="overlay" style="display: none;">
                 <div id="message-container">
                     <p id="game-message">Good job!</p>
