@@ -276,7 +276,7 @@ a {
     transition: background-color 0.3s;
     margin-top: 20px; /* Adds vertical space between the message and the button */
     display: inline-block; /* Ensures the button respects text alignment */
-    width: 100%; /* Ensures the button stretches to fill its container */
+    width: 90%; /* Ensures the button stretches to fill its container */
     text-align: center; /* Explicitly center the text inside the button */
 }
 
